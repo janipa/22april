@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Belajar Membuat Table Dengan Swapi</title>
+    <style>
+            * {
+              box-sizing: border-box;
+            }
+            input[type=text] {
+            width: 130px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px; 
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            }
+            input[type=text]:focus {
+            width: 100%;
+            }
+
+            #myInput {
+              background-image: url('/css/searchicon.png'); 
+              background-repeat: no-repeat;
+              width: 100%;
+              font-size: 16px;
+              padding: 12px 20px 12px 20px;
+              border: 1px solid #ddd;
+              margin-bottom: 12px;
+            }
+            tr:nth-child(even) {
+            background-color: #f2f2f2
+            }
+            
+            #myTable {
+              border-collapse: collapse;
+              width: 100%;
+              border: 1px solid #ddd;
+              font-size: 18px;
+            }
+            
+            #myTable th, #myTable td {
+              text-align: center;
+              padding: 10px;
+            }
+            
+            #myTable tr {
+              border-bottom: 1px solid #ddd;
+            }
+            
+            #myTable tr.header, #myTable tr:hover {
+              background-color: #f1f1f1;
+            }
+            </style>
+</head>
+<body>
+   <h2>Membuat Table Dari Data Swapi</h2>
+   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..">
+
+   <table id="myTable">
+        <tr class="header">
+          <th style="width:60%;">Name</th>
+          <th style="width:40%;">Rotation_period</th>
+          <th style="width:40%;">Orbital_period</th>
+          <th style="width:40%;">Diameter</th>
+          <th style="width:40%;">Climate</th>
+          <th style="width:40%;">Gravity</th>
+          <th style="width:40%;">Terrain</th>
+          <th style="width:40%;">Surface_water</th>
+          <th style="width:40%;">Population</th>
+          <th style="width:40%;">Residents</th>
+          <th style="width:40%;">Films</th>
+          <th style="width:40%;">Created</th>
+          <th style="width:40%;">Edited</th>
+          <th style="width:40%;">url</th>
+          </tr>
+         <tr>
+            <td>Alderan</td>
+            <td>24</td>
+            <td>364</td>
+            <td>12500</td>
+            <td>temperate</td>
+            <td>1 standard</td>
+            <td>grassland, mountains</td>
+            <td>40</td>
+            <td>2000000000</td>
+            <td>
+                <a href="https://swapi.co/api/people/5/;">https://swapi.co/api/people/5/</a>
+                <a href="https://swapi.co/api/people/68/;">https://swapi.co/api/people/68/</a>
+                <a href="https://swapi.co/api/people/81/;">https://swapi.co/api/people/81/</a>
+            </td>
+            <td>
+                <a herf="https://swapi.co/api/films/6/;">https://swapi.co/api/films/6/</a>
+                <a herf="https://swapi.co/api/films/1/;">https://swapi.co/api/films/1/</a>
+            </td>
+            <td>2014-12-10T11:35:48.479000Z</td>
+            <td>2014-12-20T20:58:18.420000Z</td>
+            <td>
+              <a herf="https://swapi.co/api/planets/2/;">https://swapi.co/api/planets/2/</a>
+            </td>
+         </tr>
+          <tr>
+                <td>Yavin IV</td>
+                <td>24</td>
+                <td>4818</td>
+                <td>10200</td>
+                <td>temperate,tropical</td>
+                <td>1 standard</td>
+                <td>jungle, rainforest</td>
+                <td>8</td>
+                <td>1000</td>
+                <td>[]</td>
+                <td>
+                  <a herf="https://swapi.co/api/films/1/;">https://swapi.co/api/films/1/</a>
+                </td>
+                <td>2014-12-10T11:37:19.144000Z</td>
+                <td>2014-12-20T20:58:18.421000Z</td>
+                <td>
+                  <a herf="https://swapi.co/api/planets/3/;">https://swapi.co/api/planets/3/</a>
+                </td>
+            </tr>
+            <tr>
+                    <td>Hoth</td>
+                    <td>23</td>
+                    <td>549</td>
+                    <td>7200</td>
+                    <td>frozen</td>
+                    <td>1.1 standard</td>
+                    <td>tundra,ice caves, mountain ranges</td>
+                    <td>100</td>
+                    <td>unknown</td>
+                    <td>[]</td>
+                    <td>
+                      <a herf="https://swapi.co/api/films/2/;">https://swapi.co/api/films/2/</a>
+                    </td>
+                    <td>2014-12-10T11:39:13.934000Z</td>
+                    <td>2014-12-20T20:58:18.423000Z</td>
+                    <td>
+                      <a herf="https://swapi.co/api/planets/4/;">https://swapi.co/api/planets/4/</a>
+                    </td>
+                </tr>
+</body>
+<script>
+function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  </script>
+</html>
